@@ -1,5 +1,5 @@
 {
-  "name": "tres-chic-bag.api",
+  "name": "botelho",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,34 +14,34 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api.git"
+    "url": "git@github.com:dansenpir/botelho.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api/issues"
+    "url": "https://github.com/dansenpir/botelho/issues"
   },
-  "homepage": "https://gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api#readme",
+  "homepage": "https://github.com/dansenpir/botelho/blob/main/README.md",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
-    "@prisma/client": "^4.5.0",
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.14",
-    "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.42.1",
-    "@typescript-eslint/parser": "^5.42.1",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@prisma/client": "^4.7.1",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.11.15",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
     "cors": "^2.8.5",
-    "eslint": "^8.27.0",
+    "eslint": "^8.29.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "prisma": "^4.5.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
+    "prisma": "^4.7.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.4"
   }
 }
