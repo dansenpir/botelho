@@ -1,0 +1,47 @@
+{
+  "name": "tres-chic-bag.api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "docker compose -f docker-compose.dev.yml up -d && node --watch",
+    "start": "node dist/index.js",
+    "lint": "npx eslint . --cache",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api/issues"
+  },
+  "homepage": "https://gitlab.com/Programeiros/tres-chic-bags/tres-chic-bag.api#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@prisma/client": "^4.5.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "cors": "^2.8.5",
+    "eslint": "^8.27.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prisma": "^4.5.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
