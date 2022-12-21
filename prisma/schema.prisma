@@ -9,3 +9,62 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          Int           @id @unique
+  username    String
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+  Showcase    Showcase[]
+  Stakeholder Stakeholder[]
+
+  @@map("user")
+}
+
+model Catalog {
+  service          String        @unique
+  max_amount       Float
+  supported_access AccessType
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @updatedAt
+  Showcase         Showcase[]
+  Stakeholder      Stakeholder[]
+
+  @@map("catalog")
+}
+
+model Showcase {
+  id              Int        @id @unique @default(autoincrement())
+  catalog_service String
+  service         Catalog    @relation(fields: [catalog_service], references: [service])
+  amount          Float
+  access_type     AccessType
+  id_user         Int
+  user            User       @relation(fields: [id_user], references: [id])
+  status          Status
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @updatedAt
+
+  @@map("showcase")
+}
+
+model Stakeholder {
+  id_user         Int     @id @unique
+  id              User    @relation(fields: [id_user], references: [id])
+  catalog_service String
+  service         Catalog @relation(fields: [catalog_service], references: [service])
+
+  @@map("stakeholder")
+}
+
+enum AccessType {
+  ACTIVATION_BY_CODE
+  EMAIL_INVITATION
+  LOGIN_AND_PASSWORD
+}
+
+enum Status {
+  IMMEDIATE
+  NEW
+  WAITING_QUEUE
+}
