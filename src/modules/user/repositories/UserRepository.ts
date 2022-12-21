@@ -10,4 +10,14 @@ export class UserRepository {
       },
     });
   }
+
+  async update({ id, username }: IUser) {
+    return await db.user.update({
+      where: { id },
+      data: {
+        id,
+        username,
+      },
+    });
+  }
 }
