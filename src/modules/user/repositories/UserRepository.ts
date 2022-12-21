@@ -11,6 +11,12 @@ export class UserRepository {
     });
   }
 
+  async findOneById(id: number) {
+    return await db.user.findUnique({
+      where: { id },
+    });
+  }
+
   async update({ id, username }: IUser) {
     return await db.user.update({
       where: { id },
