@@ -17,6 +17,25 @@ export class UserRepository {
     });
   }
 
+  async findAll() {
+    return await db.user.findMany({
+      include: {
+        Showcase: {
+          select: {
+            catalog_service: true,
+            created_at: true,
+            updated_at: true,
+          },
+        },
+        Stakeholder: {
+          select: {
+            service: true,
+          },
+        },
+      },
+    });
+  }
+
   async update({ id, username }: IUser) {
     return await db.user.update({
       where: { id },
