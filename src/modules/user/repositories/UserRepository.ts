@@ -45,4 +45,10 @@ export class UserRepository {
       },
     });
   }
+
+  async delete(id: number) {
+    return await db.user.delete({
+      where: { id },
+    });
+  }
 }
