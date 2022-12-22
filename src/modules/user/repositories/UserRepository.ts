@@ -11,8 +11,8 @@ export class UserRepository {
     });
   }
 
-  async findOneById(id: number) {
-    return await db.user.findUnique({
+  async delete(id: number) {
+    return await db.user.delete({
       where: { id },
     });
   }
@@ -36,6 +36,12 @@ export class UserRepository {
     });
   }
 
+  async findOneById(id: number) {
+    return await db.user.findUnique({
+      where: { id },
+    });
+  }
+
   async update({ id, username }: IUser) {
     return await db.user.update({
       where: { id },
@@ -43,12 +49,6 @@ export class UserRepository {
         id,
         username,
       },
-    });
-  }
-
-  async delete(id: number) {
-    return await db.user.delete({
-      where: { id },
     });
   }
 }
