@@ -5,6 +5,7 @@ import CreateUser from './useCase/CreateUser';
 import DeleteUser from './useCase/DeleteUser';
 import FindAllUsers from './useCase/FindAllUsers';
 import FindOneUser from './useCase/FindOneUser';
+import UpdateUser from './useCase/UpdateUser';
 
 const repository = new UserRepository();
 
@@ -45,5 +46,16 @@ export default class UserController {
     const user = await findOneUser.execute(id);
 
     return res.status(200).json(user);
+  }
+
+  static async update(req: Request, res: Response) {
+    const id: number = req.body.id;
+    const username: string = req.body.id;
+
+    const updateUser = new UpdateUser(repository);
+
+    await updateUser.execute({ id, username });
+
+    return res.sendStatus(200);
   }
 }
