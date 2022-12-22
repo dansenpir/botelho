@@ -4,6 +4,7 @@ import { IUser } from '../../interfaces';
 import CreateUser from './useCase/CreateUser';
 import DeleteUser from './useCase/DeleteUser';
 import FindAllUsers from './useCase/FindAllUsers';
+import FindOneUser from './useCase/FindOneUser';
 
 const repository = new UserRepository();
 
@@ -34,5 +35,15 @@ export default class UserController {
     const users = await findAllUsers.execute();
 
     return res.status(200).json(users);
+  }
+
+  static async findOneById(req: Request, res: Response) {
+    const id: number = req.body.id;
+
+    const findOneUser = new FindOneUser(repository);
+
+    const user = await findOneUser.execute(id);
+
+    return res.status(200).json(user);
   }
 }
