@@ -4,6 +4,7 @@ import { ICatalog } from '../../interfaces';
 import CreateCatalog from './useCase/CreateCatalog';
 import DeleteCatalog from './useCase/DeleteCatalog';
 import FindAllCatalogs from './useCase/FindAllCatalogs';
+import FindOneCatalog from './useCase/FindOneCatalog';
 
 const repository = new CatalogRepository();
 
@@ -34,5 +35,15 @@ export default class CatalogController {
     const catalogs = await findAllCatalogs.execute();
 
     return res.status(200).json(catalogs);
+  }
+
+  static async findOneByService(req: Request, res: Response) {
+    const { service } = req.body;
+
+    const findOneCatalog = new FindOneCatalog(repository);
+
+    const catalog = await findOneCatalog.execute(service);
+
+    return res.status(200).json(catalog);
   }
 }
