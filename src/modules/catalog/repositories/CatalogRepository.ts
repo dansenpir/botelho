@@ -11,4 +11,10 @@ export class CatalogRepository {
       },
     });
   }
+
+  async delete(service: string) {
+    return await db.catalog.delete({
+      where: { service },
+    });
+  }
 }
