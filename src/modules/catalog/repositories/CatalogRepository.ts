@@ -17,4 +17,23 @@ export class CatalogRepository {
       where: { service },
     });
   }
+
+  async findAll() {
+    return await db.catalog.findMany({
+      include: {
+        Showcase: {
+          select: {
+            catalog_service: true,
+            created_at: true,
+            updated_at: true,
+          },
+        },
+        Stakeholder: {
+          select: {
+            service: true,
+          },
+        },
+      },
+    });
+  }
 }
