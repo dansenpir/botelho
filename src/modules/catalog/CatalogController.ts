@@ -5,6 +5,7 @@ import CreateCatalog from './useCase/CreateCatalog';
 import DeleteCatalog from './useCase/DeleteCatalog';
 import FindAllCatalogs from './useCase/FindAllCatalogs';
 import FindOneCatalog from './useCase/FindOneCatalog';
+import UpdateCatalog from './useCase/UpdateCatalog';
 
 const repository = new CatalogRepository();
 
@@ -45,5 +46,15 @@ export default class CatalogController {
     const catalog = await findOneCatalog.execute(service);
 
     return res.status(200).json(catalog);
+  }
+
+  static async update(req: Request, res: Response) {
+    const { service, max_amount, supported_access }: ICatalog = req.body;
+
+    const updateCatalog = new UpdateCatalog(repository);
+
+    await updateCatalog.execute({ service, max_amount, supported_access });
+
+    return res.sendStatus(200);
   }
 }
