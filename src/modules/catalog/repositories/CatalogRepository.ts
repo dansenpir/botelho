@@ -42,4 +42,15 @@ export class CatalogRepository {
       where: { service },
     });
   }
+
+  async update({ service, max_amount, supported_access }: ICatalog) {
+    return await db.catalog.update({
+      where: { service },
+      data: {
+        service,
+        max_amount,
+        supported_access,
+      },
+    });
+  }
 }
