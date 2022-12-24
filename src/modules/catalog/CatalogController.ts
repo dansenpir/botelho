@@ -3,6 +3,7 @@ import { CatalogRepository } from './repositories/CatalogRepository';
 import { ICatalog } from '../../interfaces';
 import CreateCatalog from './useCase/CreateCatalog';
 import DeleteCatalog from './useCase/DeleteCatalog';
+import FindAllCatalogs from './useCase/FindAllCatalogs';
 
 const repository = new CatalogRepository();
 
@@ -25,5 +26,13 @@ export default class CatalogController {
     await deleteCatalog.execute(service);
 
     return res.sendStatus(200);
+  }
+
+  static async findAll(res: Response) {
+    const findAllCatalogs = new FindAllCatalogs(repository);
+
+    const catalogs = await findAllCatalogs.execute();
+
+    return res.status(200).json(catalogs);
   }
 }
