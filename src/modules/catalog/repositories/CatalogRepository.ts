@@ -36,4 +36,10 @@ export class CatalogRepository {
       },
     });
   }
+
+  async findOneByService(service: string) {
+    return await db.catalog.findUnique({
+      where: { service },
+    });
+  }
 }
