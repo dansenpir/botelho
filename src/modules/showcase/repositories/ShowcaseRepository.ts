@@ -1,4 +1,4 @@
-import { IShowcase } from '../../../interfaces';
+import { IShowcase, IShowcaseUpdate } from '../../../interfaces';
 import { prisma as db } from '../../../lib/prisma';
 
 export class ShowcaseRepository {
@@ -48,7 +48,7 @@ export class ShowcaseRepository {
     catalog_service,
     id_user,
     status,
-  }: IShowcase) {
+  }: IShowcaseUpdate) {
     return await db.showcase.update({
       where: { id },
       data: {
