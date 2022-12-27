@@ -19,4 +19,10 @@ export class ShowcaseRepository {
       },
     });
   }
+
+  async delete(id: number) {
+    return await db.showcase.delete({
+      where: { id },
+    });
+  }
 }
