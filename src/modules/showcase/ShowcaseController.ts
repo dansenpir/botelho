@@ -4,6 +4,7 @@ import { ShowcaseRepository } from './repositories/ShowcaseRepository';
 import CreateShowcase from './useCase/CreateShowcase';
 import DeleteShowcase from './useCase/DeleteShowcase';
 import FindAllShowcases from './useCase/FindAllShowcases';
+import FindOneShowcase from './useCase/FindOneShowcase';
 
 const repository = new ShowcaseRepository();
 
@@ -41,5 +42,15 @@ export default class ShowcaseController {
     const showcases = await findAllShowcases.execute();
 
     return res.status(200).json(showcases);
+  }
+
+  static async findOneById(req: Request, res: Response) {
+    const id: number = req.body.id;
+
+    const findOneShowcase = new FindOneShowcase(repository);
+
+    const showcase = await findOneShowcase.execute(id);
+
+    return res.status(200).json(showcase);
   }
 }
