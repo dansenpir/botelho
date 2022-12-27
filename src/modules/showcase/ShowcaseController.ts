@@ -3,6 +3,7 @@ import { IShowcase } from '../../interfaces';
 import { ShowcaseRepository } from './repositories/ShowcaseRepository';
 import CreateShowcase from './useCase/CreateShowcase';
 import DeleteShowcase from './useCase/DeleteShowcase';
+import FindAllShowcases from './useCase/FindAllShowcases';
 
 const repository = new ShowcaseRepository();
 
@@ -32,5 +33,13 @@ export default class ShowcaseController {
     await deleteShowcase.execute(id);
 
     return res.sendStatus(200);
+  }
+
+  static async findAll(res: Response) {
+    const findAllShowcases = new FindAllShowcases(repository);
+
+    const showcases = await findAllShowcases.execute();
+
+    return res.status(200).json(showcases);
   }
 }
