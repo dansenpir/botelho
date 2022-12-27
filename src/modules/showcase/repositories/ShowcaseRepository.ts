@@ -40,4 +40,24 @@ export class ShowcaseRepository {
       where: { id },
     });
   }
+
+  async update({
+    id,
+    access_type,
+    amount,
+    catalog_service,
+    id_user,
+    status,
+  }: IShowcase) {
+    return await db.showcase.update({
+      where: { id },
+      data: {
+        access_type,
+        amount,
+        catalog_service,
+        id_user,
+        status,
+      },
+    });
+  }
 }
