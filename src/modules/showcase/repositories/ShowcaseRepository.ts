@@ -25,4 +25,13 @@ export class ShowcaseRepository {
       where: { id },
     });
   }
+
+  async findAll() {
+    return await db.showcase.findMany({
+      include: {
+        service: true,
+        user: true,
+      },
+    });
+  }
 }
