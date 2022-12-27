@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { IShowcase } from '../../interfaces';
 import { ShowcaseRepository } from './repositories/ShowcaseRepository';
 import CreateShowcase from './useCase/CreateShowcase';
+import DeleteShowcase from './useCase/DeleteShowcase';
 
 const repository = new ShowcaseRepository();
 
@@ -21,5 +22,15 @@ export default class ShowcaseController {
     });
 
     return res.sendStatus(201);
+  }
+
+  static async delete(req: Request, res: Response) {
+    const id: number = req.body.id;
+
+    const deleteShowcase = new DeleteShowcase(repository);
+
+    await deleteShowcase.execute(id);
+
+    return res.sendStatus(200);
   }
 }
