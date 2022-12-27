@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
-import { IShowcase } from '../../interfaces';
+import { IShowcase, IShowcaseUpdate } from '../../interfaces';
 import { ShowcaseRepository } from './repositories/ShowcaseRepository';
 import CreateShowcase from './useCase/CreateShowcase';
 import DeleteShowcase from './useCase/DeleteShowcase';
 import FindAllShowcases from './useCase/FindAllShowcases';
 import FindOneShowcase from './useCase/FindOneShowcase';
+import UpdateShowcase from './useCase/UpdateShowcase';
 
 const repository = new ShowcaseRepository();
 
@@ -52,5 +53,29 @@ export default class ShowcaseController {
     const showcase = await findOneShowcase.execute(id);
 
     return res.status(200).json(showcase);
+  }
+
+  static async update(req: Request, res: Response) {
+    const {
+      access_type,
+      amount,
+      catalog_service,
+      id,
+      id_user,
+      status,
+    }: IShowcaseUpdate = req.body;
+
+    const updateShowcase = new UpdateShowcase(repository);
+
+    await updateShowcase.execute({
+      access_type,
+      amount,
+      catalog_service,
+      id,
+      id_user,
+      status,
+    });
+
+    return res.sendStatus(200);
   }
 }
