@@ -34,4 +34,10 @@ export class ShowcaseRepository {
       },
     });
   }
+
+  async findOneById(id: number) {
+    return await db.showcase.findUnique({
+      where: { id },
+    });
+  }
 }
