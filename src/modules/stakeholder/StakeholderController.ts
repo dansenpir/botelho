@@ -3,6 +3,7 @@ import { StakeholderRepository } from './repositories/StakeholderRepository';
 import { IStakeholder } from '../../interfaces/IStakeholder';
 import CreateStakeholder from './useCase/CreateStakeholder';
 import DeleteStakeholder from './useCase/DeleteStakeholder';
+import FindAllStakeholders from './useCase/FindAllStakeholders';
 
 const repository = new StakeholderRepository();
 
@@ -25,5 +26,13 @@ export default class StakeholderController {
     await deleteStakeholder.execute(id);
 
     return res.sendStatus(200);
+  }
+
+  static async findAll(res: Response) {
+    const findAllStakeholders = new FindAllStakeholders(repository);
+
+    const stakeholders = await findAllStakeholders.execute();
+
+    return res.status(200).json(stakeholders);
   }
 }
