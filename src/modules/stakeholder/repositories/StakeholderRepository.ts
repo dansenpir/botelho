@@ -1,7 +1,7 @@
 import { IStakeholder } from '../../../interfaces/IStakeholder';
 import { prisma as db } from '../../../lib/prisma';
 
-export default class StakeholderRepository {
+export class StakeholderRepository {
   async create({ catalog_service, id_user }: IStakeholder) {
     return await db.stakeholder.create({
       data: {
