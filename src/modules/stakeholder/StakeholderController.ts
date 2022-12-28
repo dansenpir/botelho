@@ -5,6 +5,7 @@ import CreateStakeholder from './useCase/CreateStakeholder';
 import DeleteStakeholder from './useCase/DeleteStakeholder';
 import FindAllStakeholders from './useCase/FindAllStakeholders';
 import FindOneStakeholder from './useCase/FindOneStakeholder';
+import UpdateStakeholder from './useCase/UpdateStakeholder';
 
 const repository = new StakeholderRepository();
 
@@ -45,5 +46,15 @@ export default class StakeholderController {
     const stakeholder = findOneStakeholder.execute(id);
 
     return res.status(200).json(stakeholder);
+  }
+
+  static async update(req: Request, res: Response) {
+    const { catalog_service, id_user }: IStakeholder = req.body;
+
+    const updateStakeholder = new UpdateStakeholder(repository);
+
+    await updateStakeholder.execute({ catalog_service, id_user });
+
+    return res.sendStatus(200);
   }
 }
