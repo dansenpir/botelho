@@ -4,6 +4,7 @@ import { IStakeholder } from '../../interfaces/IStakeholder';
 import CreateStakeholder from './useCase/CreateStakeholder';
 import DeleteStakeholder from './useCase/DeleteStakeholder';
 import FindAllStakeholders from './useCase/FindAllStakeholders';
+import FindOneStakeholder from './useCase/FindOneStakeholder';
 
 const repository = new StakeholderRepository();
 
@@ -34,5 +35,15 @@ export default class StakeholderController {
     const stakeholders = await findAllStakeholders.execute();
 
     return res.status(200).json(stakeholders);
+  }
+
+  static async findOneById(req: Request, res: Response) {
+    const id: number = req.body.id;
+
+    const findOneStakeholder = new FindOneStakeholder(repository);
+
+    const stakeholder = findOneStakeholder.execute(id);
+
+    return res.status(200).json(stakeholder);
   }
 }
