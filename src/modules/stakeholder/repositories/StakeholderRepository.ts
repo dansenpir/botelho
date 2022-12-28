@@ -16,4 +16,13 @@ export default class StakeholderRepository {
       where: { id_user },
     });
   }
+
+  async findAll() {
+    return await db.stakeholder.findMany({
+      include: {
+        id: true,
+        service: true,
+      },
+    });
+  }
 }
