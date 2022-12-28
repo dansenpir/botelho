@@ -31,4 +31,14 @@ export default class StakeholderRepository {
       where: { id_user },
     });
   }
+
+  async update({ catalog_service, id_user }: IStakeholder) {
+    return await db.stakeholder.update({
+      where: { id_user },
+      data: {
+        id_user,
+        catalog_service,
+      },
+    });
+  }
 }
