@@ -25,4 +25,10 @@ export default class StakeholderRepository {
       },
     });
   }
+
+  async findOneById(id_user: number) {
+    return await db.stakeholder.findUnique({
+      where: { id_user },
+    });
+  }
 }
