@@ -10,4 +10,10 @@ export default class StakeholderRepository {
       },
     });
   }
+
+  async delete(id_user: number) {
+    return await db.stakeholder.delete({
+      where: { id_user },
+    });
+  }
 }
